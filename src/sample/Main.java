@@ -90,6 +90,10 @@ public final class Main extends Application {
 //                System.out.println(contactName);
                 if(contactName != null)
                     contactList.add(contactName);
+                else{
+                    contactList.add(String.valueOf(System.getProperty("line.separator").length()));
+                }
+
             }
             Group root = new Group();
             stage.setScene(new Scene(root));
@@ -102,6 +106,9 @@ public final class Main extends Application {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     String s = listView.getSelectionModel().getSelectedItem();
+                    if(s==null){
+                        return;
+                    }
                     System.out.println(s);
                     vcReader.remove(s,contactList);
                     listView.setItems(FXCollections.observableArrayList(
